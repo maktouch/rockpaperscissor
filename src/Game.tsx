@@ -1,6 +1,6 @@
 import React from "react";
 import { ScreenProps } from "./App";
-import { choicesArray } from "./choices";
+import { choicesArray, choices } from "./choices";
 
 export default function Game({ state, dispatch }: ScreenProps) {
   const {
@@ -18,7 +18,8 @@ export default function Game({ state, dispatch }: ScreenProps) {
   return (
     <div>
       <p>
-        Best of <strong>{bestOf}</strong> (first to reach {firstTo})
+        Best of <strong>{bestOf}</strong> (first to reach{" "}
+        <strong>{firstTo}</strong>)
       </p>
 
       <p>
@@ -45,12 +46,16 @@ export default function Game({ state, dispatch }: ScreenProps) {
 
       {lastRoundWinner && (
         <div style={{ marginTop: "2rem" }}>
-          <div>
-            You chose: <strong>{userChoice}</strong>
-          </div>
-          <div>
-            CPU chose: <strong>{cpuChoice}</strong>
-          </div>
+          {userChoice && (
+            <div>
+              You chose: <strong>{choices[userChoice].label}</strong>
+            </div>
+          )}
+          {cpuChoice && (
+            <div>
+              CPU chose: <strong>{choices[cpuChoice].label}</strong>
+            </div>
+          )}
           <div>
             Winner: <strong>{lastRoundWinner}</strong>{" "}
           </div>
